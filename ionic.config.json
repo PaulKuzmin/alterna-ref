@@ -1,0 +1,7 @@
+{
+  "name": "alterna-ref",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
