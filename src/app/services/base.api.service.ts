@@ -17,7 +17,7 @@ export class BaseApiService {
     return this.client.get<T>(requestUrl);
   }
 
-  public post<T>(url: string, query_params : string[]): Observable<T> {
+  public post<T>(url: string, query_params: any): Observable<T> {
     let requestUrl = this.getRequestUrl(url);
     return this.client.post<T>(requestUrl, query_params);
   }

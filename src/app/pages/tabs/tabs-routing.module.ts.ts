@@ -8,31 +8,35 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'calcTab',
         loadComponent: () => import('../folder/folder.page').then(m => m.FolderPage)
       },
       {
-        path: 'tab2',
+        path: 'carTab',
         loadComponent: () => import('../folder/folder.page').then(m => m.FolderPage)
       },
       {
-        path: 'tab3',
+        path: 'examplesTab',
         loadComponent: () => import('../folder/folder.page').then(m => m.FolderPage)
       },
       {
-        path: 'tab4',
+        path: 'tnvedTab',
+        loadComponent: () => import('../folder/folder.page').then(m => m.FolderPage)
+      },
+      {
+        path: 'roisTab',
         loadComponent: () => import('../folder/folder.page').then(m => m.FolderPage)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/calcTab',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/calcTab',
     pathMatch: 'full'
   }
 ];
