@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-tab1',
@@ -10,5 +11,11 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
   imports: [IonicModule, ExploreContainerComponent],
 })
 export class Tab1Page {
-  constructor() {}
+
+  private activatedRoute = inject(ActivatedRoute);
+
+  constructor() {
+    let code = this.activatedRoute.snapshot.paramMap.get('code') as string;
+    console.log('code is '+ code);
+  }
 }

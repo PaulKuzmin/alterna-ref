@@ -7,30 +7,45 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'calcTab',
         loadComponent: () =>
           import('../tab1/tab1.page').then((m) => m.Tab1Page),
       },
       {
-        path: 'tab2',
+        path: 'calcTab/:code',
+        loadComponent: () =>
+          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+      },
+      {
+        path: 'carTab',
         loadComponent: () =>
           import('../tab2/tab2.page').then((m) => m.Tab2Page),
       },
       {
-        path: 'tab3',
+        path: 'examplesTab',
+        loadComponent: () =>
+          import('../examples/examples.page').then((m) => m.ExamplesPage),
+      },
+      {
+        path: 'tnvedTab',
         loadComponent: () =>
           import('../tab3/tab3.page').then((m) => m.Tab3Page),
       },
       {
+        path: 'alternaTab',
+        loadComponent: () =>
+          import('../alterna/alterna.page').then((m) => m.AlternaPage),
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/calcTab',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/calcTab',
     pathMatch: 'full',
   },
 ];
