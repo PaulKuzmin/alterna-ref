@@ -19,7 +19,6 @@ export class ExamplesPage implements OnInit {
 
   searchTerm: string = '';
   items: any;
-  searching: any = false;
 
   isShowHint: boolean = true;
   isShowNotFound: boolean = false;
@@ -36,12 +35,6 @@ export class ExamplesPage implements OnInit {
 
   ionViewDidEnter() {
     this.setFilteredItems();
-    /*
-    this.searchControl.valueChanges.debounceTime(3000).subscribe(search => {
-      this.searching = false;
-      this.setFilteredItems();
-    });
-     */
   }
 
   onSearchInput(event: any) {
@@ -70,7 +63,7 @@ export class ExamplesPage implements OnInit {
   }
 
   tnvedClick(code: string) {
-    this.navCtrl.navigateForward(['/tabs/tnvedTab', code]);
+    this.navCtrl.navigateForward(['/tabs/tncode', code]);
   }
 
   calcClick(code: string) {

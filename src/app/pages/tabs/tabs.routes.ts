@@ -27,9 +27,24 @@ export const routes: Routes = [
           import('../examples/examples.page').then((m) => m.ExamplesPage),
       },
       {
+        path: 'examplesTab/:text',
+        loadComponent: () =>
+          import('../examples/examples.page').then((m) => m.ExamplesPage),
+      },
+      {
         path: 'tnvedTab',
         loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
+          import('../tnved/tnved.page').then((m) => m.TnvedPage),
+      },
+      {
+        path: 'tnvedTab/:code',
+        loadComponent: () =>
+          import('../tnved/tnved.page').then((m) => m.TnvedPage),
+      },
+      {
+        path: 'tncode/:code',
+        loadComponent: () =>
+          import('../tncode/tncode.page').then((m) => m.TncodePage),
       },
       {
         path: 'alternaTab',

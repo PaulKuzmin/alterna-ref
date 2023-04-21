@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{codeData?.code}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col><h5>{{codeData?.name}}</h5></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <rate *ngIf="codeData?.data?.hasOwnProperty('import_tax')" [data]="codeData?.data?.import_tax"></rate>
+  <rate *ngIf="codeData?.data?.hasOwnProperty('export_tax')" [data]="codeData?.data?.export_tax"></rate>
+  <rate *ngIf="codeData?.data?.hasOwnProperty('vat')" [data]="codeData?.data?.vat"></rate>
+  <rate *ngIf="codeData?.data?.hasOwnProperty('excise')" [data]="codeData?.data?.excise"></rate>
+  <rate *ngIf="codeData?.data?.hasOwnProperty('special')" [data]="codeData?.data?.special"></rate>
+  <rate *ngIf="codeData?.data?.hasOwnProperty('ensuring')" [data]="codeData?.data?.ensuring"></rate>
+
+  <ion-grid [hidden]="!codeData?.data?.documents">
+    <ion-row>
+      <ion-col>Документы и особенности</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-accordion-group>
+    <document *ngIf="codeData?.data?.documents?.hasOwnProperty('restrictions')" [data]="codeData?.data?.documents?.restrictions"></document>
+    <document *ngIf="codeData?.data?.documents?.hasOwnProperty('license')" [data]="codeData?.data?.documents?.license"></document>
+    <document *ngIf="codeData?.data?.documents?.hasOwnProperty('certificates')" [data]="codeData?.data?.documents?.certificates"></document>
+    <document *ngIf="codeData?.data?.documents?.hasOwnProperty('others')" [data]="codeData?.data?.documents?.others"></document>
+  </ion-accordion-group>
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <button ion-button full icon-left (click)="examplesClick()">
+          <ion-icon name="paper"></ion-icon>
+          <div>Примеры</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full icon-left (click)="calcClick()">
+          <ion-icon name="cube"></ion-icon>
+          <div>Рассчитать</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

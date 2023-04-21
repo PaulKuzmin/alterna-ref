@@ -13,4 +13,12 @@ export const routes: Routes = [
     path: 'examples',
     loadComponent: () => import('./pages/examples/examples.page').then( m => m.ExamplesPage)
   },
+  {
+    path: 'tnved',
+    loadComponent: () => import('./pages/tnved/tnved.page').then( m => m.TnvedPage)
+  },
+  {
+    path: 'tncode',
+    loadComponent: () => import('./pages/tncode/tncode.page').then( m => m.TncodePage)
+  },
 ];
