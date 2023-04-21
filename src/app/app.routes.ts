@@ -21,4 +21,12 @@ export const routes: Routes = [
     path: 'tncode',
     loadComponent: () => import('./pages/tncode/tncode.page').then( m => m.TncodePage)
   },
+  {
+    path: 'calc',
+    loadComponent: () => import('./pages/calc/calc.page').then( m => m.CalcPage)
+  },
+  {
+    path: 'calc',
+    loadComponent: () => import('./pages/calc/calc.page').then( m => m.CalcPage)
+  },
 ];

@@ -9,12 +9,12 @@ export const routes: Routes = [
       {
         path: 'calcTab',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../calc/calc.page').then((m) => m.CalcPage),
       },
       {
         path: 'calcTab/:code',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../calc/calc.page').then((m) => m.CalcPage),
       },
       {
         path: 'carTab',
