@@ -29,4 +29,16 @@ export const routes: Routes = [
     path: 'calc',
     loadComponent: () => import('./pages/calc/calc.page').then( m => m.CalcPage)
   },
+  {
+    path: 'calc-result',
+    loadComponent: () => import('./pages/calc-result/calc-result.page').then( m => m.CalcResultPage)
+  },
+  {
+    path: 'autocalc',
+    loadComponent: () => import('./pages/autocalc/autocalc.page').then( m => m.AutocalcPage)
+  },
+  {
+    path: 'autocalc-result',
+    loadComponent: () => import('./pages/autocalc-result/autocalc-result.page').then( m => m.AutocalcResultPage)
+  },
 ];

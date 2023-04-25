@@ -19,7 +19,7 @@ export const routes: Routes = [
       {
         path: 'carTab',
         loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+          import('../autocalc/autocalc.page').then((m) => m.AutocalcPage),
       },
       {
         path: 'examplesTab',

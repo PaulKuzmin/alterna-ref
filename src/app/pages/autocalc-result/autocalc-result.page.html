@@ -1,0 +1,126 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back-outline" defaultHref="tabs">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Результат расчета</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment [(ngModel)]="calcCurrs">
+    <ion-segment-button value="rubles">
+      В рублях
+    </ion-segment-button>
+    <ion-segment-button value="dollars">
+      В дол.США
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="calcCurrs">
+    <ion-card *ngIf="data?.calculation?.F?.success">
+      <ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              Физ.лицо, итого
+            </ion-col>
+            <ion-col text-right *ngSwitchCase="'rubles'">
+              {{data.calculation.F.payments_summa_rub | number:'3.2-2'}}
+            </ion-col>
+            <ion-col text-right *ngSwitchCase="'dollars'">
+              {{data.calculation.F.payments_summa_usd | number:'3.2-2'}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row *ngFor="let p of data.calculation.F.payments">
+            <ion-col col-7 class="alt-rate-name">
+              {{p.name}} <span class="alt-rate-hint" (click)="showRateHint(p.name,p.rate)">&nbsp;?&nbsp;</span>
+            </ion-col>
+            <ion-col col-5 text-right *ngSwitchCase="'rubles'">
+              {{p.summa_rub | number:'2.2-2'}}
+            </ion-col>
+            <ion-col col-5 text-right *ngSwitchCase="'dollars'">
+              {{p.summa_usd | number:'2.2-2'}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="data?.calculation?.U?.success">
+      <ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              Юр.лицо, итого
+            </ion-col>
+            <ion-col text-right *ngSwitchCase="'rubles'">
+              {{data.calculation.U.payments_summa_rub | number:'3.2-2'}}
+            </ion-col>
+            <ion-col text-right *ngSwitchCase="'dollars'">
+              {{data.calculation.U.payments_summa_usd | number:'3.2-2'}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row *ngFor="let p of data.calculation.U.payments">
+            <ion-col col-7 class="alt-rate-name">
+              {{p.name}} <span class="alt-rate-hint" (click)="showRateHint(p.name,p.rate)">&nbsp;?&nbsp;</span>
+            </ion-col>
+            <ion-col col-5 text-right *ngSwitchCase="'rubles'">
+              {{p.summa_rub | number:'2.2-2'}}
+            </ion-col>
+            <ion-col col-5 text-right *ngSwitchCase="'dollars'">
+              {{p.summa_usd | number:'2.2-2'}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-accordion-group [hidden]="!currencies">
+    <ion-accordion value="currencies">
+      <ion-item slot="header">
+        <ion-label>Курсы валют</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+          <ion-row *ngFor="let c of currencies">
+            <ion-col>
+              {{c.name}}
+            </ion-col>
+            <ion-col text-right>
+              {{c.value | number:'2.4-4'}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-card>
+    <ion-card-content>
+      <div id="challengeID">
+        <p>Дорого?</p>
+        <p>Отправьте запрос и получите индивидуальный расчет!</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-button expand="full" (click)="requestClick()">
+      <ion-icon slot="start" name="send"></ion-icon>
+      Отправить запрос
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

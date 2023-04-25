@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Калькулятор товаров</ion-title>
-    <ion-searchbar [debounce]="3000" show-clear-button="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchInput()"
+    <ion-searchbar [debounce]="1000" show-clear-button="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchInput()"
                    placeholder="Введите код ТН ВЭД..."></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -11,9 +11,9 @@
     <ion-card-content center text-center>
       <p>Не нашли или не знаете код?</p>
       <p>Воспользуйтесь справочником:</p>
-      <button ion-button (click)="tnvedClick()">ТН ВЭД</button>
+      <ion-button ion-button (click)="tnvedClick()">ТН ВЭД</ion-button>
       <p>или подберите код, используя </p>
-      <button ion-button (click)="examplesClick()">примеры декларирования</button>
+      <ion-button ion-button (click)="examplesClick()">примеры декларирования</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -122,9 +122,9 @@
 
 <ion-footer no-border>
   <ion-toolbar *ngIf="isShowCalc">
-    <button block ion-button icon-left (click)="calcClick()">
-      <ion-icon name="calculator"></ion-icon>
+    <ion-button expand="full" (click)="calcClick()">
+      <ion-icon slot="start" name="calculator"></ion-icon>
       Рассчитать
-    </button>
+    </ion-button>
   </ion-toolbar>
 </ion-footer>

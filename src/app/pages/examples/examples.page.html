@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Примеры декларирования</ion-title>
-    <ion-searchbar [debounce]="3000"  show-clear-button="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchInput($event)" placeholder="Описание или код..."></ion-searchbar>
+    <ion-searchbar [debounce]="1000"  show-clear-button="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchInput($event)" placeholder="Описание или код..."></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +19,7 @@
     <ion-card-content center text-center>
       <p>По вашему запросу ничего не найдено!</p>
       <p>Воспользуйтесь справочником</p>
-      <button ion-button (click)="goClick()">ТН ВЭД</button>
+      <ion-button ion-button (click)="goClick()">ТН ВЭД</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -28,16 +28,16 @@
       <ion-card-content-collapsable [data]="item"></ion-card-content-collapsable>
       <ion-row>
         <ion-col>
-          <button ion-button full icon-left small (click)="tnvedClick(item.code)">
-            <ion-icon name="list"></ion-icon>
+          <ion-button expand="full" small (click)="tnvedClick(item.code)">
+            <ion-icon slot="start" name="list"></ion-icon>
             <div>ТНВЭД</div>
-          </button>
+          </ion-button>
         </ion-col>
         <ion-col>
-          <button ion-button full icon-left small (click)="calcClick(item.code)">
-            <ion-icon name="cube"></ion-icon>
+          <ion-button expand="full" small (click)="calcClick(item.code)">
+            <ion-icon slot="start" name="cube"></ion-icon>
             <div>Рассчитать</div>
-          </button>
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-card>

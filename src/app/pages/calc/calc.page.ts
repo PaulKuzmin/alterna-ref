@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {IonicModule, NavController} from '@ionic/angular';
 import {CalcApiService} from "../../services/calc.api.service";
 import {ActivatedRoute} from "@angular/router";
+import {ResultServiceService} from "../../services/result.service.service";
 
 @Component({
   selector: 'app-calc',
@@ -17,7 +18,6 @@ export class CalcPage implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
 
   searchTerm: string = '';//'2402209000';
-  searching: any = false;
   params: any;
   specialParams: any;
   calcParams: any;
@@ -39,6 +39,7 @@ export class CalcPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public calcApi: CalcApiService,
+    public result: ResultServiceService
   ) {
     let code = this.activatedRoute.snapshot.paramMap.get('code') as string;
     if (code) {
@@ -53,8 +54,10 @@ export class CalcPage implements OnInit {
     this.isShowHint = !this.searchTerm.trim();
     this.setFilteredItems();
   }
+
   onSearchInput() {
-    this.searching = true;
+    this.isShowHint = !this.searchTerm.trim();
+    this.setFilteredItems();
   }
 
   //getStatsPrice(code: string) {
@@ -141,6 +144,7 @@ export class CalcPage implements OnInit {
   }
 
   calcClick() {
+    this.result.calcResult = null;
     this.calcApi.getCalc(this.searchTerm, this.chosenParams).subscribe(
       data => {
         //console.log(data);
@@ -148,6 +152,8 @@ export class CalcPage implements OnInit {
           if (data.data.calculation.success) {
             // TODO: result page
             console.log(data.data);
+            this.result.calcResult = data.data;
+            this.navCtrl.navigateForward(['/calc-result']);
             /*
             this.navCtrl.push(CalcResultPage, {
               data: data.data

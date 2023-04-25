@@ -22,7 +22,7 @@ export class BaseApiService {
     return this.client.post<T>(requestUrl, query_params);
   }
 
-  public getUrlSearchParams(query_params : string[]): URLSearchParams {
+  public getUrlSearchParams(query_params : any): URLSearchParams {
     let params = new URLSearchParams();
     for (let key in query_params) {
       if (query_params[key] !== "") {
