@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">alterna-ref</string>
+    <string name="title_activity_main">alterna-ref</string>
+    <string name="package_name">io.alternadv.vedref</string>
+    <string name="custom_url_scheme">io.alternadv.vedref</string>
+</resources>

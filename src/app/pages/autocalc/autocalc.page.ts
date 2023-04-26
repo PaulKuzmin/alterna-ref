@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {IonicModule, NavController} from '@ionic/angular';
+import {AlertController, IonicModule, NavController} from '@ionic/angular';
 import {AutocalcApiService} from "../../services/autocalc.api.service";
 import {ResultServiceService} from "../../services/result.service.service";
 
@@ -40,7 +40,8 @@ export class AutocalcPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public autoCalcSource: AutocalcApiService,
-    public result: ResultServiceService
+    public result: ResultServiceService,
+    public alertCtrl: AlertController
   ) {
     this.chosenParams.year = new Date().getFullYear();
 
@@ -62,7 +63,7 @@ export class AutocalcPage implements OnInit {
       .subscribe(
         data => {
           this.calcParams = data.data;
-          for (var i = 0; i < this.calcParams.calc_params.length; i++) {
+          for (let i = 0; i < this.calcParams.calc_params.length; i++) {
             if (!this.chosenParams[this.calcParams.calc_params[i].code]) {
               if (this.calcParams.calc_params[i].code == "engine") {
                 this.chosenParams[this.calcParams.calc_params[i].code] = "f";
@@ -87,27 +88,23 @@ export class AutocalcPage implements OnInit {
             } else {
               let msg = '';
               if (data.data.calculation.hasOwnProperty("F") && data.data.calculation.F.hasOwnProperty("success")) {
-                for (var i = 0; i < data.data.calculation.F.messages.length; i++) {
+                for (let i = 0; i < data.data.calculation.F.messages.length; i++) {
                   msg += data.data.calculation.F.messages[i].message + '<br>';
                 }
               }
 
               if (data.data.calculation.U.hasOwnProperty("success")) {
-                for (var i = 0; i < data.data.calculation.U.messages.length; i++) {
+                for (let i = 0; i < data.data.calculation.U.messages.length; i++) {
                   msg += data.data.calculation.U.messages[i].message + '<br>';
                 }
               }
 
-              // TODO: ERROR handling
-              console.log(msg);
-              /*
-              let alert = this.alertCtrl.create({
-                title: 'Ошибка',
-                subTitle: msg,
+              this.alertCtrl.create({
+                header: 'Ошибка',
+                message: msg,
                 buttons: ['OK']
-              });
-              alert.present();
-               */
+              }).then(alert => alert.present());
+
             }
           } else {
 

@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {IonicModule, NavController} from '@ionic/angular';
+import {AlertController, IonicModule, NavController} from '@ionic/angular';
 import {CalcApiService} from "../../services/calc.api.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResultServiceService} from "../../services/result.service.service";
@@ -39,7 +39,8 @@ export class CalcPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public calcApi: CalcApiService,
-    public result: ResultServiceService
+    public result: ResultServiceService,
+    public alertCtrl: AlertController
   ) {
     let code = this.activatedRoute.snapshot.paramMap.get('code') as string;
     if (code) {
@@ -150,8 +151,6 @@ export class CalcPage implements OnInit {
         //console.log(data);
         if (data.success) {
           if (data.data.calculation.success) {
-            // TODO: result page
-            console.log(data.data);
             this.result.calcResult = data.data;
             this.navCtrl.navigateForward(['/calc-result']);
             /*
@@ -165,8 +164,11 @@ export class CalcPage implements OnInit {
               msg += data.data.calculation.messages[i].message + "\r\n";
             }
 
-            // TODO: ALERT ERROR
-            console.log(msg);
+            this.alertCtrl.create({
+              header: 'Ошибка',
+              message: msg,
+              buttons: ['OK']
+            }).then(alert => alert.present());
           }
         } else {
 
